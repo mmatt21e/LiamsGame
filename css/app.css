@@ -469,6 +469,45 @@ input[type="range"].slider {
   text-decoration: underline dotted;
 }
 
+/* ---------- Landing page ---------- */
+.landing-screen { justify-content: center; gap: 8px; }
+.landing-hero { text-align: center; }
+.landing-truck { font-size: clamp(64px, 18vw, 110px); }
+.landing-tagline {
+  color: var(--c-text);
+  font-size: clamp(17px, 4.5vw, 22px);
+  font-weight: bold;
+  margin: 6px 0 0;
+}
+.landing-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  width: 100%;
+  max-width: 640px;
+  margin: 18px 0;
+}
+.landing-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,0,0,0.28);
+  border: 2px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.landing-feature-icon { font-size: 26px; }
+.landing-hint { max-width: 460px; margin-top: 14px; }
+.landing-install-ready {
+  animation: landing-pulse 1.6s ease-in-out infinite;
+}
+@keyframes landing-pulse {
+  0%, 100% { box-shadow: var(--shadow), 0 0 0 0 rgba(255, 210, 63, 0.55); }
+  50% { box-shadow: var(--shadow), 0 0 0 12px rgba(255, 210, 63, 0); }
+}
+
 /* ---------- Adventure map ---------- */
 .adventure-trail {
   display: flex;

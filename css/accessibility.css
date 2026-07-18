@@ -63,6 +63,9 @@ html.a11y-large-ui .dialog p { font-size: 20px; }
 
 /* ---------- Focus visibility (always on, extra strong) ---------- */
 :focus-visible { outline: 4px solid var(--c-blue); outline-offset: 2px; }
+/* Headings receive programmatic focus for screen readers but aren't
+   interactive — no ring needed. */
+h1:focus, h1:focus-visible, .screen-title:focus, .screen-title:focus-visible { outline: none; }
 
 /* ---------- Screen-reader-only helper ---------- */
 .sr-only {

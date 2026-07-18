@@ -4,6 +4,12 @@ All notable changes to Monster Track Garage.
 The app version lives in `js/version.js` (bump it for every release —
 it drives the service-worker cache version and the update banner).
 
+## 1.1.0 — 2026-07-18
+
+- New landing page for browser visitors: install pitch with a one-tap
+  Install button (native prompt where supported, guide elsewhere) and a
+  "Play in Browser" option. The installed app skips it entirely.
+
 ## 1.0.0 — 2026-07-18
 
 Initial release.

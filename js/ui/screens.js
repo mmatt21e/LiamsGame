@@ -96,6 +96,7 @@ export function applySettings(settings) {
 /* ==================================================================== */
 
 export function registerScreens(router) {
+  router.register('landing', landingScreen);
   router.register('profile-select', profileSelectScreen);
   router.register('main-menu', mainMenuScreen);
   router.register('quick-race', quickRaceScreen);
@@ -115,6 +116,68 @@ export function registerScreens(router) {
   router.register('offline', offlineScreen);
   router.register('diagnostics', diagnosticsScreen);
   router.register('help', helpScreen);
+}
+
+/* ==================== Landing (browser-tab visitors) ==================== */
+
+function landingScreen(root, params, router) {
+  const s = el('div', 'screen landing-screen');
+
+  const hero = el('div', 'landing-hero');
+  hero.appendChild(el('span', 'menu-truck landing-truck', '🛻'));
+  hero.appendChild(el('h1', 'menu-title', 'Monster Track Garage'));
+  hero.appendChild(el('p', 'landing-tagline', 'Race monster trucks! Build crazy tracks! Smash boxes! 💥'));
+  s.appendChild(hero);
+
+  const feats = el('div', 'landing-features');
+  for (const [icon, text] of [
+    ['🚚', '8 trucks to collect'],
+    ['🔨', 'Build your own tracks'],
+    ['✈️', 'Works with no internet'],
+    ['🚫', 'No ads · No purchases'],
+    ['👨‍👩‍👧', 'Safe for kids — nothing online'],
+    ['💾', 'Progress saves on your device']
+  ]) {
+    const f = el('div', 'landing-feature');
+    f.appendChild(el('span', 'landing-feature-icon', icon));
+    f.appendChild(el('span', '', text));
+    feats.appendChild(f);
+  }
+  s.appendChild(feats);
+
+  const stack = el('div', 'btn-stack');
+
+  const continueToGame = () => {
+    router.home(profileService.current ? 'main-menu' : 'profile-select');
+  };
+
+  const installBtn = bigButton('Install the App', '📲', 'btn-primary', async () => {
+    if (pwa.installPromptEvent) {
+      const outcome = await pwa.promptInstall();
+      if (outcome === 'accepted') {
+        toast('Installing! Look for the truck icon on your home screen 🛻', '📲');
+        continueToGame();
+      }
+      // Dismissed the browser prompt? No nagging — they can still play.
+    } else {
+      // No automatic prompt on this browser (e.g. iPhone) — show the guide.
+      router.go('install');
+    }
+  });
+  stack.appendChild(installBtn);
+  stack.appendChild(bigButton('Play in Browser', '▶️', 'btn-green', continueToGame));
+  s.appendChild(stack);
+
+  s.appendChild(el('p', 'hint-text landing-hint',
+    'Installing puts the game on your home screen and lets you play anywhere — even in airplane mode. ✈️'));
+
+  root.appendChild(s);
+
+  // If the browser announces installability after we rendered, light the button up.
+  const onInstallable = () => installBtn.classList.add('landing-install-ready');
+  pwa.addEventListener('installable', onInstallable);
+  if (pwa.installPromptEvent) onInstallable();
+  return () => pwa.removeEventListener('installable', onInstallable);
 }
 
 /* ==================== Profile selection ==================== */

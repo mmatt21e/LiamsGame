@@ -48,8 +48,14 @@ async function boot() {
     setProgress(100, 'Ready!');
     appEl.hidden = false;
 
-    if (profileService.current) router.home('main-menu');
-    else router.home('profile-select');
+    if (pwa.isInstalled) {
+      // Installed app: straight into the game.
+      if (profileService.current) router.home('main-menu');
+      else router.home('profile-select');
+    } else {
+      // Browser tab: landing page with the install pitch first.
+      router.home('landing');
+    }
 
     if (mode !== 'idb') {
       toast('Heads up: this browser is blocking saves. Progress may be lost when you close the game.', '⚠️');
