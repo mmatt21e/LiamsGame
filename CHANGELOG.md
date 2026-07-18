@@ -4,6 +4,16 @@ All notable changes to Monster Track Garage.
 The app version lives in `js/version.js` (bump it for every release —
 it drives the service-worker cache version and the update banner).
 
+## 1.2.0 — 2026-07-18
+
+- New second game: **TITAN CRUSH** (`titan-crush/`) — 3D monster truck
+  stunt arena built with locally-bundled Three.js + cannon-es. Raycast
+  suspension, crushable cars with combo scoring, ramps, flips and
+  air-time bonuses, unlockable trucks and paints, its own offline
+  service worker and installable manifest.
+- Landing page: "More Games" card linking to Titan Crush.
+- Root service worker now ignores `titan-crush/**` (it has its own cache).
+
 ## 1.1.0 — 2026-07-18
 
 - New landing page for browser visitors: install pitch with a one-tap

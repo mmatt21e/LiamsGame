@@ -171,6 +171,19 @@ function landingScreen(root, params, router) {
   s.appendChild(el('p', 'hint-text landing-hint',
     'Installing puts the game on your home screen and lets you play anywhere — even in airplane mode. ✈️'));
 
+  // More games in this arcade.
+  const moreTitle = el('h3', 'landing-more-title', '🎮 More Games');
+  s.appendChild(moreTitle);
+  const more = el('a', 'landing-more-card');
+  more.href = 'titan-crush/';
+  more.appendChild(el('span', 'landing-more-emoji', '💥'));
+  const moreInfo = el('div', 'landing-more-info');
+  moreInfo.appendChild(el('strong', '', 'TITAN CRUSH'));
+  moreInfo.appendChild(el('span', '', '3D monster truck stunt arena — crush cars, hit ramps, land flips. Ages 8+.'));
+  more.appendChild(moreInfo);
+  more.appendChild(el('span', 'landing-more-arrow', '▶'));
+  s.appendChild(more);
+
   root.appendChild(s);
 
   // If the browser announces installability after we rendered, light the button up.

@@ -1,4 +1,10 @@
-# 🛻 Monster Track Garage
+# 🛻 Monster Track Garage (+ 💥 Titan Crush)
+
+> This repo ships **two** offline-capable games:
+> **Monster Track Garage** (this page — 2D racing & track building, ages 6–12)
+> and **[Titan Crush](titan-crush/README.md)** (3D monster truck stunt arena,
+> Three.js + cannon-es, ages 8+) at the `titan-crush/` subpath. Both are
+> linked from the landing page and deploy together on GitHub Pages.
 
 A colorful, kid-friendly **monster truck racing and track-building game** that runs
 entirely in the browser as an offline-capable **Progressive Web App (PWA)**.

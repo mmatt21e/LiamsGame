@@ -99,6 +99,10 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // never touch cross-origin (there should be none)
 
+  // Titan Crush (titan-crush/) has its OWN service worker and cache —
+  // stay out of its way entirely.
+  if (url.pathname.includes('/titan-crush/')) return;
+
   // Navigations: serve the cached shell so the app opens offline.
   if (request.mode === 'navigate') {
     event.respondWith(

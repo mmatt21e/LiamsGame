@@ -6,4 +6,4 @@
  * BUMP THIS on every release: it renames the service-worker cache,
  * which triggers the safe update flow ("Reload to Update").
  */
-self.APP_VERSION = '1.1.0';
+self.APP_VERSION = '1.2.0';

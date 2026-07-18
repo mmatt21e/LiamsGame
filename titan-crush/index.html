@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="TITAN CRUSH — 3D monster truck stunt arena. Crush cars, hit ramps, land flips. Works offline.">
+  <meta name="theme-color" content="#0d0d12">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Titan Crush">
+  <title>TITAN CRUSH — Monster Truck Stunt Arena</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Import map: resolves bare "three" / "cannon-es" imports to the LOCAL
+       bundled files in ./vendor — nothing loads from a CDN, ever. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js",
+      "three/addons/": "./vendor/addons/",
+      "cannon-es": "./vendor/cannon-es.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <noscript><p class="noscript">TITAN CRUSH needs JavaScript enabled.</p></noscript>
+
+  <!-- 3D canvas (created full-screen by the game) -->
+  <canvas id="gl"></canvas>
+
+  <!-- ============ START MENU ============ -->
+  <div id="menu" class="overlay">
+    <div class="menu-box">
+      <h1 class="logo">TITAN<span>CRUSH</span></h1>
+      <p class="tagline">MONSTER TRUCK STUNT ARENA</p>
+      <div class="menu-buttons">
+        <button id="btn-freestyle" class="mbtn mbtn-primary">🔥 FREESTYLE <small>90 seconds · go for the high score</small></button>
+        <button id="btn-practice" class="mbtn">🛠 PRACTICE <small>no timer · just send it</small></button>
+        <button id="btn-trucks" class="mbtn">🚚 GARAGE <small>pick your truck &amp; paint</small></button>
+      </div>
+      <p id="menu-highscore" class="highscore"></p>
+      <p class="menu-links"><a href="../">← Monster Track Garage</a></p>
+    </div>
+  </div>
+
+  <!-- ============ TRUCK SELECT ============ -->
+  <div id="truck-select" class="overlay" hidden>
+    <div class="menu-box">
+      <h2 class="section-title">GARAGE</h2>
+      <div id="truck-cards" class="truck-cards"></div>
+      <h3 class="paint-title">PAINT</h3>
+      <div id="paint-row" class="paint-row"></div>
+      <button id="btn-select-back" class="mbtn">✓ DONE</button>
+    </div>
+  </div>
+
+  <!-- ============ HUD ============ -->
+  <div id="hud" hidden>
+    <div class="hud-top">
+      <div class="hud-cell"><span class="hud-label">SCORE</span><span id="hud-score" class="hud-value">0</span></div>
+      <div class="hud-cell hud-timer-cell"><span class="hud-label">TIME</span><span id="hud-timer" class="hud-value">90</span></div>
+      <div class="hud-cell"><span class="hud-label">KM/H</span><span id="hud-speed" class="hud-value">0</span></div>
+    </div>
+    <div id="hud-air" class="hud-air" hidden>AIR ✈</div>
+    <div id="popups"></div>
+    <button id="btn-pause" class="icon-btn hud-pause" aria-label="Pause">⏸</button>
+    <!-- touch controls -->
+    <div class="touch left-cluster">
+      <button class="tbtn" id="t-left" aria-label="Steer left">◀</button>
+      <button class="tbtn" id="t-right" aria-label="Steer right">▶</button>
+    </div>
+    <div class="touch right-cluster">
+      <button class="tbtn tbtn-reset" id="t-reset" aria-label="Flip truck upright">↻</button>
+      <button class="tbtn tbtn-brake" id="t-brake" aria-label="Brake / reverse">▼</button>
+      <button class="tbtn tbtn-gas" id="t-gas" aria-label="Throttle">▲</button>
+    </div>
+    <p class="keys-hint">W/S throttle · A/D steer · R flip upright · Esc pause</p>
+  </div>
+
+  <!-- ============ PAUSE ============ -->
+  <div id="pause" class="overlay" hidden>
+    <div class="menu-box">
+      <h2 class="section-title">PAUSED</h2>
+      <div class="menu-buttons">
+        <button id="btn-resume" class="mbtn mbtn-primary">▶ RESUME</button>
+        <button id="btn-restart" class="mbtn">↻ RESTART</button>
+        <button id="btn-quit" class="mbtn">✕ QUIT TO MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ RESULTS ============ -->
+  <div id="results" class="overlay" hidden>
+    <div class="menu-box">
+      <h2 class="section-title">TIME'S UP!</h2>
+      <p id="final-score" class="final-score">0</p>
+      <p id="new-record" class="new-record" hidden>★ NEW RECORD ★</p>
+      <ul id="results-breakdown" class="breakdown"></ul>
+      <p id="unlock-msg" class="unlock-msg" hidden></p>
+      <div class="menu-buttons">
+        <button id="btn-again" class="mbtn mbtn-primary">🔥 RUN IT BACK</button>
+        <button id="btn-results-menu" class="mbtn">MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading" class="overlay">
+    <div class="menu-box"><h2 class="section-title">LOADING…</h2><p class="tagline">warming up the engine</p></div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
