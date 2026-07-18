@@ -1,0 +1,76 @@
+/* Monster Track Garage — accessibility modes (toggled via classes on <html>) */
+
+/* ---------- Reduced motion ---------- */
+html.a11y-reduced-motion *,
+html.a11y-reduced-motion *::before,
+html.a11y-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.a11y-motion-auto *,
+  html.a11y-motion-auto *::before,
+  html.a11y-motion-auto *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- High contrast ---------- */
+html.a11y-high-contrast {
+  --c-bg: #000000;
+  --c-bg2: #101010;
+  --c-panel: #1c1c1c;
+  --c-panel-light: #2e2e2e;
+  --c-text: #ffffff;
+  --c-text-dim: #e8e8e8;
+  --c-yellow: #ffe14d;
+  --c-accent: #ff8c33;
+}
+html.a11y-high-contrast .btn,
+html.a11y-high-contrast .card,
+html.a11y-high-contrast .swatch,
+html.a11y-high-contrast .toggle,
+html.a11y-high-contrast .seg {
+  border-color: #ffffff;
+  border-width: 3px;
+}
+html.a11y-high-contrast .hud-chip,
+html.a11y-high-contrast .touch-btn {
+  background: rgba(0, 0, 0, 0.92);
+  border-color: #ffffff;
+}
+html.a11y-high-contrast .card p,
+html.a11y-high-contrast .hint-text,
+html.a11y-high-contrast .panel p { color: #ffffff; }
+
+/* ---------- Larger interface controls ---------- */
+html.a11y-large-ui {
+  --btn-size: 78px;
+  --radius: 20px;
+}
+html.a11y-large-ui body { font-size: 18px; }
+html.a11y-large-ui .btn { font-size: 24px; padding: 18px 26px; }
+html.a11y-large-ui .btn-small { font-size: 20px; min-height: 58px; }
+html.a11y-large-ui .card h3 { font-size: 21px; }
+html.a11y-large-ui .card p { font-size: 16px; }
+html.a11y-large-ui .setting-row .setting-label { font-size: 21px; }
+html.a11y-large-ui .toast { font-size: 20px; }
+html.a11y-large-ui .hud-chip { font-size: 23px; }
+html.a11y-large-ui .dialog p { font-size: 20px; }
+
+/* ---------- Focus visibility (always on, extra strong) ---------- */
+:focus-visible { outline: 4px solid var(--c-blue); outline-offset: 2px; }
+
+/* ---------- Screen-reader-only helper ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

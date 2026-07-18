@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="description" content="Monster Track Garage - an offline-friendly monster truck racing and building game for kids. No ads, no accounts, no purchases.">
+  <meta name="theme-color" content="#ff6b1a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Monster Track">
+  <title>Monster Track Garage</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/game.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+</head>
+<body>
+  <noscript>
+    <div class="noscript-message">
+      <h1>Monster Track Garage</h1>
+      <p>This game needs JavaScript to run. Please enable JavaScript in your browser.</p>
+    </div>
+  </noscript>
+
+  <!-- Splash / loading screen (static so it shows instantly) -->
+  <div id="splash" class="splash" aria-live="polite">
+    <div class="splash-inner">
+      <div class="splash-logo">
+        <img src="assets/icons/favicon.svg" alt="" width="120" height="120">
+      </div>
+      <h1 class="splash-title">Monster Track Garage</h1>
+      <p class="splash-sub">Rev your engines…</p>
+      <div class="splash-bar"><div id="splash-progress" class="splash-bar-fill"></div></div>
+      <p id="splash-status" class="splash-status">Loading…</p>
+    </div>
+  </div>
+
+  <!-- App root: screens are rendered here -->
+  <main id="app" class="app" hidden></main>
+
+  <!-- Game layer: canvas + HUD overlay -->
+  <div id="game-layer" class="game-layer" hidden>
+    <canvas id="game-canvas" class="game-canvas"></canvas>
+    <div id="hud" class="hud"></div>
+  </div>
+
+  <!-- Global overlays -->
+  <div id="dialog-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <div id="update-banner" class="update-banner" hidden>
+    <span>🔧 A new version is ready!</span>
+    <button id="update-reload-btn" class="btn btn-small">Reload to Update</button>
+    <button id="update-dismiss-btn" class="btn btn-small btn-ghost" aria-label="Dismiss update notice">✕</button>
+  </div>
+  <div id="net-indicator" class="net-indicator" hidden></div>
+
+  <script src="js/version.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
