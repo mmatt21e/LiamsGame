@@ -4,6 +4,16 @@ All notable changes to Monster Track Garage.
 The app version lives in `js/version.js` (bump it for every release —
 it drives the service-worker cache version and the update banner).
 
+## 1.3.0 — 2026-07-18
+
+- New third game: **ROOFTOP RUSH** (`rooftop-rush/`) — 3D endless runner
+  (Three.js, bundled locally) alternating subway and rooftop blocks:
+  3-lane swipe controls, jump/slide obstacles, roof gaps, coins with
+  magnet + shield power-ups, unlockable crew skins, pooled procedural
+  world, own installable manifest + offline service worker.
+- Landing page: Rooftop Rush card added under More Games.
+- Root service worker now also ignores `rooftop-rush/**`.
+
 ## 1.2.0 — 2026-07-18
 
 - New second game: **TITAN CRUSH** (`titan-crush/`) — 3D monster truck

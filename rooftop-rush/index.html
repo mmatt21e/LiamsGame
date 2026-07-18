@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="ROOFTOP RUSH — 3D endless runner across subway tracks and city rooftops. Fully offline.">
+  <meta name="theme-color" content="#12101c">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rooftop Rush">
+  <title>ROOFTOP RUSH — Endless Runner</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Import map: "three" resolves to the LOCAL bundled build. No CDNs. -->
+  <script type="importmap">
+  { "imports": { "three": "./vendor/three.module.js" } }
+  </script>
+</head>
+<body>
+  <noscript><p class="noscript">ROOFTOP RUSH needs JavaScript enabled.</p></noscript>
+  <canvas id="gl"></canvas>
+
+  <!-- ============ START ============ -->
+  <div id="menu" class="overlay">
+    <div class="panel">
+      <h1 class="logo">ROOFTOP<span>RUSH</span></h1>
+      <p class="tagline">SUBWAY · SKYLINE · DON'T STOP</p>
+      <div class="stack">
+        <button id="btn-run" class="mbtn mbtn-primary">▶ RUN <small>swipe to dodge · how far can you go?</small></button>
+        <button id="btn-shop" class="mbtn">🧢 CREW <small>unlock runners with your coins</small></button>
+        <button id="btn-mute" class="mbtn mbtn-slim">🔊 SOUND ON</button>
+      </div>
+      <p id="menu-best" class="best-line"></p>
+      <p class="menu-links"><a href="../">← more games</a></p>
+    </div>
+  </div>
+
+  <!-- ============ SHOP / CREW ============ -->
+  <div id="shop" class="overlay" hidden>
+    <div class="panel">
+      <h2 class="section-title">THE CREW</h2>
+      <p id="shop-coins" class="coins-line"></p>
+      <div id="shop-cards" class="shop-cards"></div>
+      <button id="btn-shop-back" class="mbtn">✓ DONE</button>
+    </div>
+  </div>
+
+  <!-- ============ HUD ============ -->
+  <div id="hud" hidden>
+    <div class="hud-row">
+      <div class="hud-chip"><span class="lbl">DIST</span><span id="hud-dist" class="val">0m</span></div>
+      <div class="hud-chip"><span class="lbl">COINS</span><span id="hud-coins" class="val">0</span></div>
+    </div>
+    <div id="hud-power" class="hud-power" hidden></div>
+    <button id="btn-pause" class="icon-btn" aria-label="Pause">⏸</button>
+    <div id="hud-msg" class="hud-msg" hidden></div>
+    <p class="keys-hint">← → lanes · ↑ jump · ↓ slide · Esc pause</p>
+  </div>
+
+  <!-- ============ PAUSE ============ -->
+  <div id="pause" class="overlay" hidden>
+    <div class="panel">
+      <h2 class="section-title">PAUSED</h2>
+      <div class="stack">
+        <button id="btn-resume" class="mbtn mbtn-primary">▶ KEEP RUNNING</button>
+        <button id="btn-quit" class="mbtn">✕ QUIT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ GAME OVER ============ -->
+  <div id="gameover" class="overlay" hidden>
+    <div class="panel">
+      <h2 id="go-title" class="section-title">WIPED OUT!</h2>
+      <p id="go-score" class="final"></p>
+      <p id="go-best" class="best-line"></p>
+      <p id="go-record" class="record" hidden>★ NEW BEST ★</p>
+      <ul id="go-stats" class="go-stats"></ul>
+      <div class="stack">
+        <button id="btn-again" class="mbtn mbtn-primary">↻ RUN AGAIN</button>
+        <button id="btn-go-shop" class="mbtn">🧢 CREW</button>
+        <button id="btn-go-menu" class="mbtn">MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading" class="overlay"><div class="panel"><h2 class="section-title">LOADING…</h2></div></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

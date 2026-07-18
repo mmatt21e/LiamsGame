@@ -174,15 +174,21 @@ function landingScreen(root, params, router) {
   // More games in this arcade.
   const moreTitle = el('h3', 'landing-more-title', '🎮 More Games');
   s.appendChild(moreTitle);
-  const more = el('a', 'landing-more-card');
-  more.href = 'titan-crush/';
-  more.appendChild(el('span', 'landing-more-emoji', '💥'));
-  const moreInfo = el('div', 'landing-more-info');
-  moreInfo.appendChild(el('strong', '', 'TITAN CRUSH'));
-  moreInfo.appendChild(el('span', '', '3D monster truck stunt arena — crush cars, hit ramps, land flips. Ages 8+.'));
-  more.appendChild(moreInfo);
-  more.appendChild(el('span', 'landing-more-arrow', '▶'));
-  s.appendChild(more);
+  const games = [
+    ['titan-crush/', '💥', 'TITAN CRUSH', '3D monster truck stunt arena — crush cars, hit ramps, land flips. Ages 8+.', ''],
+    ['rooftop-rush/', '🏃', 'ROOFTOP RUSH', '3D endless runner — sprint the subway, leap the rooftops. Ages 8+.', 'landing-more-card-teal']
+  ];
+  for (const [href, emoji, title, desc, extraCls] of games) {
+    const more = el('a', 'landing-more-card ' + extraCls);
+    more.href = href;
+    more.appendChild(el('span', 'landing-more-emoji', emoji));
+    const moreInfo = el('div', 'landing-more-info');
+    moreInfo.appendChild(el('strong', '', title));
+    moreInfo.appendChild(el('span', '', desc));
+    more.appendChild(moreInfo);
+    more.appendChild(el('span', 'landing-more-arrow', '▶'));
+    s.appendChild(more);
+  }
 
   root.appendChild(s);
 
